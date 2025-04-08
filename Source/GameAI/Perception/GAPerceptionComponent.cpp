@@ -147,21 +147,7 @@ void UGAPerceptionComponent::TickComponent(float DeltaTime, enum ELevelTick Tick
 	{
 		// Compute the direction from the pawn to the target's last known position.
 		FVector ToTarget = LastKnownTarget.Position - OwnerPawn->GetActorLocation();
-		if (!ToTarget.IsNearlyZero())
-		{
-			// Get the desired rotation to face the target.
-			FRotator DesiredRotation = ToTarget.Rotation();
-
-			// Optionally, you can interpolate smoothly for a gradual turn:
-			FRotator CurrentRotation = OwnerPawn->GetActorRotation();
-			FRotator NewRotation = FMath::RInterpTo(CurrentRotation, DesiredRotation, DeltaTime, 5.0f);
-			NewRotation.Roll = 0.0f;
-			NewRotation.Pitch = 0.0f;
-			OwnerPawn->SetActorRotation(NewRotation);
-
-			// For an immediate rotation update, set it directly:
-			OwnerPawn->SetActorRotation(NewRotation);
-		}
+		
 	}
 }
 
